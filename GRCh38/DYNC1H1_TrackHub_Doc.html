@@ -2,50 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>DYNC1H1 Blinded Dual-Track UCSC Track Hub (GRCh38)</title>
+  <title>DYNC1H1 Dual-Track UCSC Track Hub v2.0.0 (GRCh38)</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 920px; margin: 24px auto; line-height: 1.55; color: #1e293b; padding: 0 16px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 940px; margin: 24px auto; line-height: 1.55; color: #1e293b; padding: 0 16px; }
     h1, h2 { color: #0f172a; }
     table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
-    th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; }
+    th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; vertical-align: top; }
     th { background: #f1f5f9; }
     code { background: #f1f5f9; padding: 2px 5px; border-radius: 4px; }
   </style>
 </head>
 <body>
-  <h1>Human <i>DYNC1H1</i> Blinded Dual-Track UCSC Track Hub (GRCh38 / hg38)</h1>
-  <p><b>Canonical Reference Anchor:</b> <code>GRCh38 chr14:101,964,573-102,056,443</code> (<code>+1</code> strand), MANE Select <code>NM_001376.5</code> / <code>ENST00000360184.10</code> (78 coding exons, 13,941-nt CDS, final exon 77/78 junction <code>c.13812</code>, 55-nt NMD boundary <code>c.13757</code>), canonical heavy chain <code>NP_001367.2</code> / UniProt <code>Q14204</code> (4,646 amino acids). Zero unpublished internal clinical cases are included.</p>
+  <h1>Human <i>DYNC1H1</i> Dual-Track UCSC Track Hub — Release <code>v2.0.0</code> (GRCh38 / hg38)</h1>
+  <p><b>Canonical Reference Anchor:</b> <code>GRCh38 chr14:101,964,573-102,056,443</code> (<code>+1</code> strand), MANE Select <code>NM_001376.5</code> / <code>ENST00000360184.10</code> (78 coding exons, 13,941-nt CDS, final exon 77/78 junction <code>c.13812</code>, 55-nt NMD boundary <code>c.13757</code>), canonical heavy chain <code>NP_001367.2</code> / UniProt <code>Q14204</code> (4,646 amino acids). Only public variants with verified <i>DYNC1H1</i> nucleotide coordinates are included; unpublished internal clinical cases and cross-gene literature mentions are excluded.</p>
 
-  <h2>Included Binary UCSC Tracks</h2>
+  <h2>Documented Dual-Track Architecture (<code>v2.0.0</code>)</h2>
+  <p>To prevent circularity between clinical labels and population allele frequencies, benchmark reference labels are restricted to <code>ClinVar &gt;= 1*</code> clinical assertions with zero <code>gnomAD</code> frequency rules, while <b>Track 1A (Pure 3D)</b> and <b>Track 2-Intrinsic</b> are computed in isolated code modules on spatially disjoint 5-fold cross-validation clusters (<code>&gt; 25 bp</code> genomic and <code>&gt; 5 AA</code> protein separation):</p>
+
   <table>
     <thead>
-      <tr><th>Track</th><th>Format</th><th>Biological Content &amp; Color Key</th></tr>
+      <tr><th>Track</th><th>Format</th><th>Methodological Specification &amp; Color Key</th></tr>
     </thead>
     <tbody>
       <tr>
         <td><b>DYNC1H1 78 Exons</b></td>
         <td><code>bigBed 9</code> (RGB)</td>
-        <td>All 78 canonical exons of <code>NM_001376.5</code>: <b>Teal</b> = symmetric <code>3n</code> coding exons (37 exons; skipping preserves reading frame and forms dominant-negative heavy chains); <b>Slate</b> = phase-shifting exons; <b>Red</b> = terminal NMD-escape region downstream of <code>c.13757</code>.</td>
+        <td>All 78 canonical exons of <code>NM_001376.5</code> (35 CDS exons divisible by 3, 43 phase-shifting exons): <b>Teal</b> = <b>34 internal frame-preserving <code>3n</code> exons</b> (among Exons 2–77; single-exon skipping preserves the downstream reading frame); <b>Slate</b> = <b>43 phase-shifting exons</b> (Exon 1 plus 42 internal asymmetric exons); <b>Red</b> = <b>terminal Exon 78</b> (<code>3n</code> coding tail + stop codon, escaping 55-nt NMD downstream of <code>c.13757</code>).</td>
       </tr>
       <tr>
-        <td><b>DYNC1H1 4-Quadrants</b></td>
+        <td><b>DYNC1H1 Quadrants v2</b></td>
         <td><code>bigBed 9</code> (RGB)</td>
-        <td>All 9,404 deduplicated public intragenic <i>DYNC1H1</i> variants (published world cohort 2010-2026, ClinVar, LOVD v3, gnomAD v4.1) classified by Blinded Dual-Track Quadrant: <b>Q I</b> Concordant 3D+Genomics, <b>Q II</b> Splice/NMD/Regulatory Rescue (90 P/LP rescued), <b>Q III</b> 3D Pocket/Interface Rescue (15 P/LP rescued), and <b>Q IV</b> Concordant Benign/Buffered.</td>
+        <td>All <code>11,892</code> observed public GRCh38 <i>DYNC1H1</i> variants classified by out-of-fold Track 1A vs. Track 2-Intrinsic quadrant: <b>Q I</b> (Red) Concordant 3D + Genomic High; <b>Q IIa</b> (Violet) SpliceAI/PTV/NMD-Driven; <b>Q IIb</b> (Indigo) Constrained Coding Missense / Regulatory with Low Pure-3D Score; <b>Q III</b> (Teal) 3D Pocket/Interface High with Low Regional Sequence Depletion; <b>Q IV</b> (Slate) Concordant Low.</td>
       </tr>
       <tr>
-        <td><b>Track 1 3D Sens</b></td>
+        <td><b>Track 1A Pure 3D</b></td>
         <td><code>bigWig</code></td>
-        <td>Blinded Track 1 pure two-state <code>2 x 4,646</code>-AA homodimer 3D biophysical sensitivity derived from 18 experimental human cryo-EM/crystal structures (98.3% coverage; Phi autoinhibited vs. active DDA-LIS1-MTBD states).</td>
+        <td><b>Pure 3D Homodimer Biophysical Sensitivity</b> across the polymer-relaxed, clash-free <code>2 x 4,646 = 9,292</code>-AA Off-Phi and On-DDA homodimer models (<code>0</code> peptide chain breaks, <code>0</code> steric overlaps <code>&lt; 3.40 A</code>; built from 18 human cryo-EM/X-ray structures) plus <code>9,292</code>-node GNM strain. Contains <b>zero evolutionary conservation (<code>S3</code>)</b> and <b>zero supervised pathogenic proximity (<code>SPDV</code>)</b> features.</td>
       </tr>
       <tr>
-        <td><b>GNM Hinge Strain</b></td>
+        <td><b>GNM Hinge v2.0</b></td>
         <td><code>bigWig</code></td>
-        <td>Full-length <code>9,292</code>-node Kirchhoff Gaussian Network Model slow-mode mechanical hinge strain coupling AAA+ nucleotide motion through the Buttress and Stalk into the MTBD.</td>
+        <td>Validated clash-free <code>9,292</code>-node Kirchhoff Gaussian Network Model slow-mode mechanical hinge strain across Off-Phi and On-DDA homodimers.</td>
       </tr>
       <tr>
-        <td><b>Track 2 CpG 1-O/E</b></td>
+        <td><b>Track 2 LOCO O/E</b></td>
         <td><code>bigWig</code></td>
-        <td>Blinded Track 2 CpG-calibrated regional missense depletion (<code>1 - O/E</code>) across 807,162 global population controls.</td>
+        <td><b>Leave-One-Codon-Out (LOCO)</b> 31-codon CpG-calibrated regional missense depletion (<code>1 - O/E</code>), excluding the focal codon itself to prevent variant-level frequency leakage.</td>
       </tr>
     </tbody>
   </table>

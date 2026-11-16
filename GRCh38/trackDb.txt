@@ -1,7 +1,7 @@
 track DYNC1H1_78Exons_Symmetry_NMD
 bigDataUrl DYNC1H1_78Exons_Symmetry_and_55nt_NMD_GRCh38.bb
 shortLabel DYNC1H1 78 Exons
-longLabel DYNC1H1 78 Canonical Exons: 3n Symmetry (Teal), Phase-Shift (Slate) & c.13757 NMD-Escape (Red)
+longLabel DYNC1H1 78 Exons (NM_001376.5): 34 Internal 3n (Teal), 43 Phase-Shifting (Slate) & Exon 78 Terminal 3n/NMD-Escape (Red)
 type bigBed 9
 itemRgb on
 visibility pack
@@ -10,8 +10,8 @@ html DYNC1H1_TrackHub_Doc
 
 track DYNC1H1_Clinical_Variants_4Quadrants
 bigDataUrl DYNC1H1_Clinical_Variants_and_VUS_4Quadrants_GRCh38.bb
-shortLabel DYNC1H1 4-Quadrants
-longLabel DYNC1H1 9,404 Public Variants Colored by Blinded Dual-Track Quadrant (QI-QIV)
+shortLabel DYNC1H1 Quadrants v2
+longLabel DYNC1H1 11,892 Observed GRCh38 Variants by Dual-Track Class (QI, QIIa Splice/PTV, QIIb Missense, QIII 3D, QIV Low)
 type bigBed 9
 itemRgb on
 visibility pack
@@ -20,8 +20,8 @@ html DYNC1H1_TrackHub_Doc
 
 track DYNC1H1_Track1_3D_Sensitivity
 bigDataUrl DYNC1H1_Track1_3D_Sensitivity.bw
-shortLabel Track 1 3D Sens
-longLabel Blinded Track 1 Pure 3D Homodimer Biophysical Sensitivity (Phi vs DDA)
+shortLabel Track 1A Pure 3D
+longLabel Track 1A Pure 3D Homodimer Sensitivity (Clash-Free Phi/DDA + GNM; Zero Conservation, Zero SPDV)
 type bigWig 0.0 1.0
 color 27,158,119
 visibility full
@@ -33,9 +33,9 @@ html DYNC1H1_TrackHub_Doc
 
 track DYNC1H1_GNM_Allosteric_Strain
 bigDataUrl DYNC1H1_GNM_Allosteric_Hinge_Strain.bw
-shortLabel GNM Hinge Strain
-longLabel Full-Length 9,292-AA Homodimer Kirchhoff GNM Slow-Mode Allosteric Hinge Strain
-type bigWig 0.0 0.84
+shortLabel GNM Hinge v2.0
+longLabel Validated Clash-Free 9,292-AA Homodimer Kirchhoff GNM Slow-Mode Allosteric Hinge Strain
+type bigWig 0.0 0.877
 color 231,111,81
 visibility full
 autoScale on
@@ -45,8 +45,8 @@ html DYNC1H1_TrackHub_Doc
 
 track DYNC1H1_Track2_CpG_Depletion
 bigDataUrl DYNC1H1_Track2_CpG_OE_Depletion.bw
-shortLabel Track 2 CpG 1-O/E
-longLabel Blinded Track 2 Multi-Population CpG-Calibrated Missense Depletion (1 - O/E)
+shortLabel Track 2 LOCO O/E
+longLabel Track 2-Intrinsic Leave-One-Codon-Out (LOCO) 31-Codon CpG Missense Depletion (1 - O/E)
 type bigWig 0.0 1.0
 color 117,112,179
 visibility full
