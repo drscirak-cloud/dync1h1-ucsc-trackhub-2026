@@ -1,0 +1,6 @@
+hub DYNC1H1_DualTrack_2026
+shortLabel DYNC1H1 Dual-Track 2026
+longLabel Blinded Dual-Track 3D Homodimer Biophysics, GNM Allostery & Genomic-Splicing Atlas of Human DYNC1H1
+genomesFile genomes.txt
+email drscirak@googlemail.com
+descriptionUrl description.html
