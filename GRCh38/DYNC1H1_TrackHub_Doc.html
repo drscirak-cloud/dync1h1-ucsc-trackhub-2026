@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DYNC1H1 Blinded Dual-Track UCSC Track Hub (GRCh38)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 920px; margin: 24px auto; line-height: 1.55; color: #1e293b; padding: 0 16px; }
+    h1, h2 { color: #0f172a; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+    th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; }
+    th { background: #f1f5f9; }
+    code { background: #f1f5f9; padding: 2px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Human <i>DYNC1H1</i> Blinded Dual-Track UCSC Track Hub (GRCh38 / hg38)</h1>
+  <p><b>Canonical Reference Anchor:</b> <code>GRCh38 chr14:101,964,573-102,056,443</code> (<code>+1</code> strand), MANE Select <code>NM_001376.5</code> / <code>ENST00000360184.10</code> (78 coding exons, 13,941-nt CDS, final exon 77/78 junction <code>c.13812</code>, 55-nt NMD boundary <code>c.13757</code>), canonical heavy chain <code>NP_001367.2</code> / UniProt <code>Q14204</code> (4,646 amino acids). Zero unpublished internal clinical cases are included.</p>
+
+  <h2>Included Binary UCSC Tracks</h2>
+  <table>
+    <thead>
+      <tr><th>Track</th><th>Format</th><th>Biological Content &amp; Color Key</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>DYNC1H1 78 Exons</b></td>
+        <td><code>bigBed 9</code> (RGB)</td>
+        <td>All 78 canonical exons of <code>NM_001376.5</code>: <b>Teal</b> = symmetric <code>3n</code> coding exons (37 exons; skipping preserves reading frame and forms dominant-negative heavy chains); <b>Slate</b> = phase-shifting exons; <b>Red</b> = terminal NMD-escape region downstream of <code>c.13757</code>.</td>
+      </tr>
+      <tr>
+        <td><b>DYNC1H1 4-Quadrants</b></td>
+        <td><code>bigBed 9</code> (RGB)</td>
+        <td>All 9,404 deduplicated public intragenic <i>DYNC1H1</i> variants (published world cohort 2010-2026, ClinVar, LOVD v3, gnomAD v4.1) classified by Blinded Dual-Track Quadrant: <b>Q I</b> Concordant 3D+Genomics, <b>Q II</b> Splice/NMD/Regulatory Rescue (90 P/LP rescued), <b>Q III</b> 3D Pocket/Interface Rescue (15 P/LP rescued), and <b>Q IV</b> Concordant Benign/Buffered.</td>
+      </tr>
+      <tr>
+        <td><b>Track 1 3D Sens</b></td>
+        <td><code>bigWig</code></td>
+        <td>Blinded Track 1 pure two-state <code>2 x 4,646</code>-AA homodimer 3D biophysical sensitivity derived from 18 experimental human cryo-EM/crystal structures (98.3% coverage; Phi autoinhibited vs. active DDA-LIS1-MTBD states).</td>
+      </tr>
+      <tr>
+        <td><b>GNM Hinge Strain</b></td>
+        <td><code>bigWig</code></td>
+        <td>Full-length <code>9,292</code>-node Kirchhoff Gaussian Network Model slow-mode mechanical hinge strain coupling AAA+ nucleotide motion through the Buttress and Stalk into the MTBD.</td>
+      </tr>
+      <tr>
+        <td><b>Track 2 CpG 1-O/E</b></td>
+        <td><code>bigWig</code></td>
+        <td>Blinded Track 2 CpG-calibrated regional missense depletion (<code>1 - O/E</code>) across 807,162 global population controls.</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

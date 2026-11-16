@@ -1,0 +1,57 @@
+track DYNC1H1_78Exons_Symmetry_NMD
+bigDataUrl DYNC1H1_78Exons_Symmetry_and_55nt_NMD_GRCh38.bb
+shortLabel DYNC1H1 78 Exons
+longLabel DYNC1H1 78 Canonical Exons: 3n Symmetry (Teal), Phase-Shift (Slate) & c.13757 NMD-Escape (Red)
+type bigBed 9
+itemRgb on
+visibility pack
+priority 1
+html DYNC1H1_TrackHub_Doc
+
+track DYNC1H1_Clinical_Variants_4Quadrants
+bigDataUrl DYNC1H1_Clinical_Variants_and_VUS_4Quadrants_GRCh38.bb
+shortLabel DYNC1H1 4-Quadrants
+longLabel DYNC1H1 9,404 Public Variants Colored by Blinded Dual-Track Quadrant (QI-QIV)
+type bigBed 9
+itemRgb on
+visibility pack
+priority 2
+html DYNC1H1_TrackHub_Doc
+
+track DYNC1H1_Track1_3D_Sensitivity
+bigDataUrl DYNC1H1_Track1_3D_Sensitivity.bw
+shortLabel Track 1 3D Sens
+longLabel Blinded Track 1 Pure 3D Homodimer Biophysical Sensitivity (Phi vs DDA)
+type bigWig 0.0 1.0
+color 27,158,119
+visibility full
+autoScale off
+viewLimits 0.0:1.0
+maxHeightPixels 100:48:16
+priority 3
+html DYNC1H1_TrackHub_Doc
+
+track DYNC1H1_GNM_Allosteric_Strain
+bigDataUrl DYNC1H1_GNM_Allosteric_Hinge_Strain.bw
+shortLabel GNM Hinge Strain
+longLabel Full-Length 9,292-AA Homodimer Kirchhoff GNM Slow-Mode Allosteric Hinge Strain
+type bigWig 0.0 0.84
+color 231,111,81
+visibility full
+autoScale on
+maxHeightPixels 100:48:16
+priority 4
+html DYNC1H1_TrackHub_Doc
+
+track DYNC1H1_Track2_CpG_Depletion
+bigDataUrl DYNC1H1_Track2_CpG_OE_Depletion.bw
+shortLabel Track 2 CpG 1-O/E
+longLabel Blinded Track 2 Multi-Population CpG-Calibrated Missense Depletion (1 - O/E)
+type bigWig 0.0 1.0
+color 117,112,179
+visibility full
+autoScale off
+viewLimits 0.0:1.0
+maxHeightPixels 100:48:16
+priority 5
+html DYNC1H1_TrackHub_Doc
