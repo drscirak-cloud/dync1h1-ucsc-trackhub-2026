@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DYNC1H1 Dual-Track Atlas v2.0.0 (2026) | Validated 3D Homodimer, Splicing, NMD &amp; Stoichiometry Explorer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://3Dmol.org/build/3Dmol-min.js" defer></script>
+  <script src="data/dync1h1_compact_explorer_bundle.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <span class="eyebrow">Release v2.0.0 &middot; GRCh38 chr14:101,964,573-102,056,443 (+1) &middot; MANE Select NM_001376.5 &middot; NP_001367.2 / Q14204 (4,646 AA; 78 Exons: 34 Internal 3n + 1 Terminal + 43 Phase-Shifting)</span>
+        <h1><em>DYNC1H1</em> Blinded Dual-Track Atlas (v2.0.0)</h1>
+        <p class="subtitle">Clash-Free 2 &times; 4,646 AA Homodimer Mechanics (Track 1A Pure 3D vs Track 1B 3D+Cons), LOCO CpG Depletion, Neural Splicing / 55-nt NMD (Track 2-Intrinsic), Empirical GTEx v10 Stoichiometry &amp; ClinVar VUS Triage</p>
+      </div>
+      <div class="topbar-actions">
+        <button type="button" id="btn-ucsc-modal" class="btn-secondary">UCSC Track Hub (v2.0.0)</button>
+        <button type="button" id="btn-theme-toggle" class="btn-ghost" aria-label="Toggle color theme">Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Summary KPI Strip -->
+    <section class="kpi-grid" aria-label="Dataset and Benchmark Summary">
+      <article class="kpi-card">
+        <span class="kpi-label">Observed GRCh38 Alleles</span>
+        <strong class="kpi-value" id="kpi-n-eval">11,892</strong>
+        <span class="kpi-detail">2,868 ClinVar &ge;1* benchmark (235 disjoint components, 0 AF rules)</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Joint Dual-Track (M3B OOF)</span>
+        <strong class="kpi-value" id="kpi-auc">AUC 0.987</strong>
+        <span class="kpi-detail">Missense AUC 0.944 (95% CI 0.914&ndash;0.968) &middot; MCC 0.816</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Validated 9,292-AA Homodimers</span>
+        <strong class="kpi-value" id="kpi-routing">0 Clashes / 0 Breaks</strong>
+        <span class="kpi-detail">98.3% human cryo-EM/X-ray &middot; 8 OpenMM pockets (0 clashes &lt;2.4 &Aring;)</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">ClinVar VUS Triaged (n = 2,555)</span>
+        <strong class="kpi-value" id="kpi-vus">427 High-Priority</strong>
+        <span class="kpi-detail">843 assay-routed (Q IIa RT-PCR vs Q I/IIb/III motility) &middot; 1,285 tolerated</span>
+      </article>
+    </section>
+
+    <!-- Interactive Residue, Missense Substitution & Variant Lookup Bar -->
+    <section class="card lookup-panel">
+      <div class="lookup-grid">
+        <div class="field-group">
+          <label for="input-residue">Codon / Amino Acid Position (1 &ndash; 4,646)</label>
+          <div class="inline-controls">
+            <input type="number" id="input-residue" min="1" max="4646" value="3384" step="1">
+            <select id="select-alt-aa" aria-label="Substitute amino acid">
+              <option value="">Wild-Type Codon Profile</option>
+            </select>
+            <button type="button" id="btn-inspect-residue" class="btn-primary">Inspect 3D &amp; Dual-Track</button>
+          </div>
+        </div>
+        <div class="field-group">
+          <label for="input-search">Quick Search (HGVS p./c., Exon 1&ndash;78, Domain, Q_I / Q_IIa / Q_IIb / Q_III / Q_IV)</label>
+          <input type="search" id="input-search" placeholder="e.g. p.Glu1518Lys, p.Pro3173Arg, Exon 78, MTBD, Q_IIa, Q_III...">
+        </div>
+        <div class="field-group">
+          <label for="select-preset">Clinical Mechanistic Archetypes (v2.0.0)</label>
+          <select id="select-preset">
+            <option value="">Select a representative variant...</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Two-Column Interactive Workspace: 3D Homodimer Viewer + Live Dual-Track Readout -->
+    <section class="workspace-grid">
+      <div class="card viewer-card">
+        <div class="card-header">
+          <div>
+            <h2>Interactive 2 &times; 4,646 AA Homodimer Viewer</h2>
+            <p class="muted" id="viewer-subtitle">Polymer-relaxed gapless chains (3.80 &Aring; peptide bonds, min non-bonded C&alpha;&ndash;C&alpha; 3.82 &Aring;, 0 D-inversions)</p>
+          </div>
+          <div class="viewer-controls">
+            <select id="select-state" aria-label="Conformational State">
+              <option value="ON">State B: Active DDA-LIS1-MTBD Homodimer (9,292 AA)</option>
+              <option value="OFF">State A: Autoinhibited Phi-Particle Homodimer (9,292 AA)</option>
+            </select>
+            <select id="select-color-mode" aria-label="3D Coloring Scheme">
+              <option value="domain">Color: 17 Structural Domains</option>
+              <option value="d3d">Color: Track 1A Pure 3D Sensitivity (0 Cons)</option>
+              <option value="gnm">Color: 9,292-Node Kirchhoff GNM Hinge Strain</option>
+              <option value="oe">Color: Track 2 LOCO CpG Depletion (1 &minus; O/E)</option>
+            </select>
+          </div>
+        </div>
+        <div id="mol-viewer" class="mol-viewport" role="img" aria-label="Interactive 3D molecular viewer of full-length human DYNC1H1 homodimer"></div>
+        <div class="viewer-legend" id="viewer-legend"></div>
+      </div>
+
+      <div class="card inspector-card">
+        <div class="card-header">
+          <div>
+            <h2 id="inspector-title">Position Inspector: Codon 3384</h2>
+            <p class="muted" id="inspector-domain">Domain &amp; Exon Context</p>
+          </div>
+          <span class="badge" id="inspector-quadrant-badge">Dual-Track v2.0.0</span>
+        </div>
+
+        <div class="track-split">
+          <div class="track-box track1-box">
+            <h3>Track 1A (Pure 3D) &amp; Track 1B (+Cons)</h3>
+            <dl class="metric-list" id="dl-track1"></dl>
+          </div>
+          <div class="track-box track2-box">
+            <h3>Track 2-Intrinsic (0 AF, LOCO O/E, Splice, AG)</h3>
+            <dl class="metric-list" id="dl-track2"></dl>
+          </div>
+        </div>
+
+        <div class="synthesis-banner" id="synthesis-banner">
+          <h4>Track 3 Joint Synthesis (M3B) &amp; Functional Assay Routing</h4>
+          <p id="synthesis-text">Loading verified v2.0.0 Dual-Track bundle...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full-Length 4,646-AA Interactive Architecture & Profile Track -->
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <h2>Full-Length <em>DYNC1H1</em> Linear &amp; Allosteric Profile (1 &ndash; 4,646 AA; Click Anywhere to Jump)</h2>
+          <p class="muted">Compare Track 1A Pure 3D Sensitivity, Validated 9,292-AA GNM Hinge Strain, and Track 2 Leave-One-Codon-Out CpG Depletion (1 &minus; O/E)</p>
+        </div>
+      </div>
+      <div class="svg-track-wrap">
+        <svg id="linear-profile-svg" viewBox="0 0 1160 225" preserveAspectRatio="none" aria-label="Interactive 4646 amino acid profile"></svg>
+      </div>
+    </section>
+
+    <!-- Interactive Diploid Homodimer Stoichiometry & Empirical GTEx v10 cis-eQTL Calculator -->
+    <section class="card stoichiometry-section">
+      <div class="card-header">
+        <div>
+          <h2>Diploid Homodimer Stoichiometry &amp; Empirical GTEx v10 <em>cis</em>-eQTL Calculator</h2>
+          <p class="muted">Scaled via donor-level SD(log2(TPM + 1)): Skeletal Muscle 7.70 pp swing, Tibial Nerve 4.28 pp swing, Fibroblasts 4.09 pp swing, Cerebral Cortex 0.00 pp (0 common cis-eQTLs)</p>
+        </div>
+      </div>
+      <div class="stoich-grid">
+        <div class="stoich-controls">
+          <div class="slider-row">
+            <label for="range-nmd">Mutant Transcript NMD Degradation Efficiency: <strong id="lbl-nmd-val">0%</strong></label>
+            <input type="range" id="range-nmd" min="0" max="95" value="0" step="1">
+            <div class="preset-pills">
+              <button type="button" class="pill" data-nmd="0" data-eqtl="0">Missense / Terminal &gt;c.13757 Escape (0% NMD)</button>
+              <button type="button" class="pill" data-nmd="88" data-eqtl="0">Canonical PTC &le; c.13757 (88% NMD)</button>
+              <button type="button" class="pill" data-nmd="0" data-eqtl="-8">Tibial Nerve Protective cis-eQTL (&minus;8%)</button>
+              <button type="button" class="pill" data-nmd="0" data-eqtl="16">Skeletal Muscle Aggravating cis-eQTL (+16%)</button>
+            </div>
+          </div>
+          <div class="slider-row">
+            <label for="range-eqtl">Mutant-Allele Empirical <em>cis</em>-eQTL Fold Shift: <strong id="lbl-eqtl-val">0%</strong></label>
+            <input type="range" id="range-eqtl" min="-35" max="35" value="0" step="1">
+          </div>
+        </div>
+        <div class="stoich-bars" id="stoich-bars"></div>
+      </div>
+    </section>
+
+    <!-- Filterable Clinical & VUS Variant Explorer Table -->
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <h2>Verified Intragenic <em>DYNC1H1</em> Cohort (2010&ndash;2026), Five-Class Quadrants &amp; ClinVar VUS (v2.0.0)</h2>
+          <p class="muted" id="table-count-label">Click any row to inspect its clash-free 3D homodimer position, Track 1A/1B/2-Intrinsic scores, and assay routing</p>
+        </div>
+        <div class="table-filters">
+          <select id="filter-tier" aria-label="Filter by Evidence Tier or Quadrant">
+            <option value="ALL">All Bundled Variants</option>
+            <option value="ClinVar_PLP_1StarPlus_Published">Published + ClinVar &ge;1* Pathogenic</option>
+            <option value="ClinVar_PLP_1StarPlus">ClinVar &ge;1* Pathogenic (All)</option>
+            <option value="Published_DYNC1H1_LOVD_Verified">Published DYNC1H1 / LOVD Verified</option>
+            <option value="VUS_High_Priority">ClinVar VUS: High-Priority (M3B &ge; 0.80)</option>
+            <option value="Q_IIa">Quadrant IIa: SpliceAI &ge;0.20 / PTV / NMD</option>
+            <option value="Q_IIb">Quadrant IIb: Constrained Missense (3D-Low)</option>
+            <option value="Q_III">Quadrant III: 3D Pocket / Seam (Seq-Low)</option>
+            <option value="ClinVar_BLB_1StarPlus">ClinVar &ge;1* Benign / LB Controls</option>
+          </select>
+          <button type="button" id="btn-export-csv" class="btn-secondary">Export Filtered CSV</button>
+        </div>
+      </div>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Variant Explorer Data Table">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Variant (HGVS)</th>
+              <th>Pos (GRCh38)</th>
+              <th>Exon / Domain</th>
+              <th>Clinical Tier</th>
+              <th>T1A Pure 3D</th>
+              <th>T1B 3D+Cons</th>
+              <th>T2 Intrinsic</th>
+              <th>M3B Joint</th>
+              <th>Five-Class Quadrant</th>
+            </tr>
+          </thead>
+          <tbody id="variant-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Native Light-Dismiss Dialog for UCSC Genome Browser & IGV Track Hub -->
+  <dialog id="dialog-ucsc" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>UCSC Genome Browser Binary Track Hub &mdash; Release v2.0.0 (GRCh38)</h2>
+        <button type="button" id="btn-close-modal" class="btn-ghost" aria-label="Close dialog">&times;</button>
+      </div>
+      <p>All five compiled binary tracks (<code>bigBed 9</code> and <code>bigWig</code>) span canonical human <em>DYNC1H1</em> (<code>chr14:101,964,573-102,056,443</code>, GRCh38/hg38) at GitHub Release <code>v2.0.0</code> (Commit <code>2803d5ed2ac509e983a9f208603b1649a173fcfa</code>):</p>
+      <ul class="track-file-list">
+        <li><strong>Versioned UCSC Hub URL:</strong> <code>https://raw.githubusercontent.com/drscirak-cloud/dync1h1-ucsc-trackhub-2026/v2.0.0/hub.txt</code></li>
+        <li><strong>78 Canonical Exons (34 Internal 3n + 1 Terminal Exon 78 + 43 Phase-Shifting):</strong> <code>DYNC1H1_78Exons_Symmetry_and_55nt_NMD_GRCh38.bb</code></li>
+        <li><strong>11,892 Observed Alleles Across 5 Quadrants (QI, QIIa, QIIb, QIII, QIV):</strong> <code>DYNC1H1_Clinical_Variants_and_VUS_4Quadrants_GRCh38.bb</code></li>
+        <li><strong>Track 1A Pure 3D Homodimer Sensitivity (Zero Conservation, Zero SPDV):</strong> <code>DYNC1H1_Track1_3D_Sensitivity.bw</code></li>
+        <li><strong>Validated 9,292-Node Kirchhoff GNM Hinge Strain:</strong> <code>DYNC1H1_GNM_Allosteric_Hinge_Strain.bw</code></li>
+        <li><strong>Track 2 Leave-One-Codon-Out CpG Missense Depletion (1 &minus; O/E):</strong> <code>DYNC1H1_Track2_CpG_OE_Depletion.bw</code></li>
+      </ul>
+      <p class="muted">Launch directly in the UCSC Genome Browser (GRCh38):</p>
+      <p><a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&amp;hubUrl=https://raw.githubusercontent.com/drscirak-cloud/dync1h1-ucsc-trackhub-2026/v2.0.0/hub.txt&amp;position=chr14:101964573-102056443" target="_blank" rel="noopener noreferrer">Open DYNC1H1 v2.0.0 Track Hub in UCSC Genome Browser &rarr;</a></p>
+    </div>
+  </dialog>
+</body>
+</html>
