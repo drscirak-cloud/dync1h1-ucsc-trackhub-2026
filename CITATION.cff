@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this dataset, UCSC Track Hub, 3D homodimer coordinate set, or codebase, please cite it as below."
+title: "Blinded Dual-Track Dissection of Homodimer Biophysics, Neural Splicing, and Diploid Stoichiometry Across Human DYNC1H1"
+version: "2.0.1"
+date-released: "2026-11-18"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/drscirak-cloud/dync1h1-ucsc-trackhub-2026"
+url: "https://drscirak-cloud.github.io/dync1h1-ucsc-trackhub-2026/webapp/"
+authors:
+  - family-names: "Cirak"
+    given-names: "Sebahattin"
+keywords:
+  - DYNC1H1
+  - cytoplasmic dynein
+  - SMALED1
+  - CMT2O
+  - malformations of cortical development
+  - variant interpretation

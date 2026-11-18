@@ -1,0 +1,38 @@
+{
+  "title": "Blinded Dual-Track Dissection of Homodimer Biophysics, Neural Splicing, and Diploid Stoichiometry Across Human DYNC1H1 (Release v2.0.0 / Step 4 Curated)",
+  "upload_type": "dataset",
+  "publication_date": "2026-11-18",
+  "version": "2.0.1",
+  "license": "CC-BY-4.0",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Cirak, Sebahattin",
+      "affiliation": "University Medical Center [Placeholder: Insert Exact Affiliation]"
+    }
+  ],
+  "description": "Complete frozen evaluation tables (11,892 observed GRCh38 human DYNC1H1 alleles on NM_001376.5 / NP_001367.2), polymer-validated clash-free 2x4,646-AA Off-Phi and On-Active-DDA homodimer coordinates, 16 dihedral-scanned OpenMM (Amber14SB + GBn2) wild-type and mutant clinical pocket structures, row-curated published patient phenotypes (Table S3 & Table 4, n=130), compiled GRCh38 UCSC Genome Browser binary Track Hub (bigBed 9 / bigWig), interactive 3Dmol.js Web Explorer, and reproducible Python/Colab code.",
+  "keywords": [
+    "DYNC1H1",
+    "cytoplasmic dynein 1",
+    "SMALED1",
+    "CMT2O",
+    "malformations of cortical development",
+    "homodimer biophysics",
+    "pre-mRNA splicing",
+    "UCSC Track Hub",
+    "human genetics"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/drscirak-cloud/dync1h1-ucsc-trackhub-2026/releases/tag/v2.0.0",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://drscirak-cloud.github.io/dync1h1-ucsc-trackhub-2026/webapp/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ]
+}
